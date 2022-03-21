@@ -33,8 +33,18 @@ export const AppointmentsList: React.FC<Props> = () => {
 			<h1 className='page_title'>{getMonthName(Number(month))}</h1>
 
 			<div className="minstry_lists">
-				<ApptListEditor group='A' month={Number(month)} year={Number(year)} />
-				<ApptListEditor group='B' month={Number(month)} year={Number(year)} />
+				<ApptListEditor
+					group='A'
+					month={Number(month)}
+					year={Number(year)}
+					isEditing={isEditing}
+				/>
+				<ApptListEditor
+					group='B'
+					month={Number(month)}
+					year={Number(year)}
+					isEditing={isEditing}
+				/>
 			</div>
 		</Div>
 	)
@@ -42,7 +52,7 @@ export const AppointmentsList: React.FC<Props> = () => {
 
 const Div = styled.div`
 	width: calc(100% - 10vw);
-	padding: 0 5vw;
+	padding: 0 5vw 5rem;
 
 	button {
 		max-height: 45px;

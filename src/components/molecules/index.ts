@@ -1,1 +1,1 @@
-export { }
+export { BrotherPresentation } from './BrotherPresentation/BrotherPresentation';

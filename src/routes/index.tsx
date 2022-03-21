@@ -1,5 +1,5 @@
 import { Home, AppointmentsList } from "pages";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const routes = [
 	{ title: 'Meses', Page: Home, path: '/', index: true },

@@ -19,7 +19,7 @@ export const allGroups = {
 }
 
 export const getMonthWeekends = (year: number, month: number) => {
-	//getDay 0 equals to sunday
+	//startDay 0 equals to sunday
 	//month as parameter for Date is 1 based.
 	const startDay = new Date(year, month, 1).getDay()
 	const endDate = new Date(year, month, 0).getDate()
@@ -39,7 +39,7 @@ export const getMonthWeekends = (year: number, month: number) => {
 				new Date(`${year}/${month}/${day}`).getDate() :
 				new Date(year, month, day).getDate()
 			
-			if (!Number(lastDay) || day < lastDay - 7 && day !== 0) return new Date()
+			if ((!Number(lastDay) || day < lastDay - 7) && day !== 0) return new Date()
 				const findingDate = new Date(year, month, day)
 				if (findingDate.getDay() === 0) return findingDate
 				return findLastSunday(lastDay - 1, year, month)
