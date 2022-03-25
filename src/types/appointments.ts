@@ -1,6 +1,8 @@
 import type { IBrother } from 'types/brothers';
 
 export interface IAppointmentResponse {
+	"_id": string
+	"dateGroup": string
 	"datetime": string
 	"suffix": string
 	"bro1": string
