@@ -43,12 +43,12 @@ export interface UpdateAppointmentProps {
 	appointment: {
 		bro1?: string
 		bro2?: string
+		suffix?: string
 	}
-	group: 'A' | 'B'
 }
-export const updateAppointment = async ({ appointmentId, appointment, group }: UpdateAppointmentProps) => {
+export const updateAppointment = async ({ appointmentId, appointment }: UpdateAppointmentProps) => {
     try {
-			const response: AxiosResponse<IAppointmentResponse> = await Api.patch(`appointments/${appointmentId}/group/${group}`, { ...appointment })
+			const response: AxiosResponse<IAppointmentResponse> = await Api.patch(`appointments/${appointmentId}`, { ...appointment })
 			return response.data
 
     } catch (error) {

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { parseGroupsNames } from 'helpers/helpers';
 
 import { allGroups, dates } from 'components/organisms/ApptListEditor/helpers';
-import { Select } from 'components/atoms';
+import { Select, SuffixInput } from 'components/atoms';
 import { IBrother } from 'types/brothers';
 import { formatDate } from 'utilities/dates';
 import { BrotherPresentation } from 'components/molecules';
@@ -18,7 +18,7 @@ interface Props {
 	isEditing: boolean
 }
 
-export type HandleBrothersChange = (broId: string, appointId: string, field: string) => void
+export type HandleBrothersChange = (broId: string, appointId: string, field: string, datetime: string) => void
 
 export const ApptListEditor: React.FC<Props> = ({
 	group,
@@ -33,8 +33,12 @@ export const ApptListEditor: React.FC<Props> = ({
 		getAppointments(month, year, group)
 	}, [])
 
-	const handleBrothersChange: HandleBrothersChange = (broId, appointmentId, field ) => {
-		editAppointment({ appointment: { [field]: broId }, appointmentId, group })
+	const handleBrothersChange: HandleBrothersChange = (broId, appointmentId, field, datetime ) => {
+		editAppointment({ appointment: { [field]: broId }, appointmentId, group, datetime })
+	}
+
+	const handleSuffixChange = (string: string, appointmentId: string, datetime: string) => {
+		editAppointment({ appointment: { suffix: string }, appointmentId, group, datetime })
 	}
 
 	return (
@@ -46,12 +50,12 @@ export const ApptListEditor: React.FC<Props> = ({
 					return (
 						<div key={date.datetime} className="appointment_section">
 							<p className="date_time_label"> {formatDate(new Date(date.datetime))}</p>
-							<p className='warning'>{date.suffix}</p>
+							<SuffixInput isEditing={isEditing} onChange={(string) => handleSuffixChange(string, date._id, date.datetime)} value={date.suffix} />
 							<BrotherPresentation
 								className='select'
 								group={group}
 								showAll={!!date.suffix}
-								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro1')}
+								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro1', date.datetime)}
 								value={date.bro1}
 								isEditing={isEditing}
 							/>
@@ -59,7 +63,7 @@ export const ApptListEditor: React.FC<Props> = ({
 								className='select'
 								group={group}
 								showAll={!!date.suffix}
-								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro2')}
+								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro2', date.datetime)}
 								value={date.bro2}
 								isEditing={isEditing}
 							/>

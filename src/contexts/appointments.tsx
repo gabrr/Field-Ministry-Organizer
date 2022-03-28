@@ -5,12 +5,17 @@ import { getAllBrother } from "services/users";
 import { IAppointmentParsed } from "types/appointments";
 import { parseAppointments } from "utilities/appointments";
 
+interface EditAppointment extends UpdateAppointmentProps {
+	datetime: string
+	group: 'A' | 'B'
+}
+
 interface AppointmentContextProps {
 	appointments: { [key: string]: IAppointmentParsed[] } | undefined
 	getAppointments: (month: number, year: number, group: 'A' | 'B') => void
 	loading: boolean
 	error: boolean
-	editAppointment: (props: UpdateAppointmentProps) => void
+	editAppointment: (props: EditAppointment) => void
 }
 
 export const AppointmentContext = createContext<AppointmentContextProps>(null!)
@@ -37,13 +42,12 @@ export const AppointmentProvider: React.FC = ({ children }) => {
 			})		
 	}
 
-	const editAppointment = ({ appointment, appointmentId, group }: UpdateAppointmentProps) => {
+	const editAppointment = ({ appointment, appointmentId, datetime, group }: EditAppointment) => {
 
-		const app = appointments?.A && appointments[group].find(({ _id }) => appointmentId === _id)
-		const month = new Date(app?.datetime || '').getMonth() + 1
-		const year = new Date(app?.datetime || '').getFullYear()
+		const month = new Date(datetime || '').getMonth() + 1
+		const year = new Date(datetime || '').getFullYear()
 
-		updateAppointment({ appointment, appointmentId, group })
+		updateAppointment({ appointment, appointmentId })
 			.then(() => getAppointments(month, year, group))
 	}
 
