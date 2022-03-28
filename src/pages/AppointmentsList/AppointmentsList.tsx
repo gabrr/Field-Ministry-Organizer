@@ -69,7 +69,11 @@ const Div = styled.div`
 
 	.minstry_lists {
 		margin-top: 2rem;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+    grid-template-columns: 1fr 1fr;
+
+		@media screen and (max-width: 765px){
+			grid-template-columns: 1fr;
+		}
 	}
 `

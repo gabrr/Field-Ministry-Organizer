@@ -64,7 +64,7 @@ export const Select: React.FC<Props> = ({ onChange, className, group, value, sho
 
 const Div = styled.div`
 	color: var(--secondary-text);
-	min-width: 400px;
+	width: clamp(200px, 100%, 300px);
 	position: relative;
 
 	.value_holder {

@@ -32,7 +32,7 @@ export const BrotherPresentation: React.FC<Props> = ({
 					value,
 					showAll,
 				}}
-			/> : <p>{value?.name || '—'}</p>}
+			/> : <p>{value?.name || ''}</p>}
 			
 		</Div>
  	)

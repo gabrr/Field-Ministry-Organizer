@@ -72,6 +72,8 @@ export const ApptListEditor: React.FC<Props> = ({
 }
 
 const Div = styled.div`
+	margin-bottom: 3rem;
+
 	.list_title {
 		color: var(--secondary-text);
 	}
