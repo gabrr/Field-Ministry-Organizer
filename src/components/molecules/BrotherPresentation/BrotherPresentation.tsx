@@ -9,6 +9,7 @@ interface Props {
 	className?: string
 	value?: IBrother
 	isEditing: boolean
+	showAll: boolean
 }
 
 export const BrotherPresentation: React.FC<Props> = ({
@@ -16,7 +17,8 @@ export const BrotherPresentation: React.FC<Props> = ({
 	isEditing,
 	onChange,
 	className,
-	value
+	value,
+	showAll,
 }) => {
 
 	return (
@@ -27,7 +29,8 @@ export const BrotherPresentation: React.FC<Props> = ({
 					group,
 					onChange,
 					className,
-					value
+					value,
+					showAll,
 				}}
 			/> : <p>{value?.name || '—'}</p>}
 			

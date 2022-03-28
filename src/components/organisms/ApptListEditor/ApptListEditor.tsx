@@ -50,6 +50,7 @@ export const ApptListEditor: React.FC<Props> = ({
 							<BrotherPresentation
 								className='select'
 								group={group}
+								showAll={!!date.suffix}
 								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro1')}
 								value={date.bro1}
 								isEditing={isEditing}
@@ -57,6 +58,7 @@ export const ApptListEditor: React.FC<Props> = ({
 							<BrotherPresentation
 								className='select'
 								group={group}
+								showAll={!!date.suffix}
 								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro2')}
 								value={date.bro2}
 								isEditing={isEditing}

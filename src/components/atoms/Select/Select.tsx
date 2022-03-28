@@ -9,16 +9,19 @@ interface Props {
 	group: 'A' | 'B'
 	className?: string
 	value?: IBrother
+	showAll: boolean
 }
 
-export const Select: React.FC<Props> = ({ onChange, className, group, value }) => {
+export const Select: React.FC<Props> = ({ onChange, className, group, value, showAll }) => {
 	const list = useRef<HTMLDivElement>(null)
 	const { users, loading } = useUsers()
 
 	const [isListOpen, setisListOpen] = useState(false)
+
+	const brothers = showAll ? users : allGroups[group].brothers(users)
 	
 	const handleListOption = (index: number) => {
-		onChange(allGroups[group].brothers(users)[index])
+		onChange(brothers[index])
 	}
 	
 	const focus = () => {
@@ -41,7 +44,7 @@ export const Select: React.FC<Props> = ({ onChange, className, group, value }) =
 						onBlur={closeList}
 						className={`options_container ${isListOpen ? 'open' : 'close'}`}
 					>
-						{allGroups[group].brothers(users).map((brother, index) => {
+						{brothers.map((brother, index) => {
 							return (
 								<div
 									key={index}
