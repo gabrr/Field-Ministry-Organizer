@@ -18,10 +18,13 @@ export const Select: React.FC<Props> = ({ onChange, className, group, value, sho
 
 	const [isListOpen, setisListOpen] = useState(false)
 
-	const brothers = showAll ? users : allGroups[group].brothers(users)
+	const brotherEmpty = { _id: '', name: 'Ninguém' } as IBrother
+
+	const brothers = showAll ? [...users, brotherEmpty] : [...allGroups[group].brothers(users), brotherEmpty]
 	
 	const handleListOption = (index: number) => {
 		onChange(brothers[index])
+		setisListOpen(false)
 	}
 	
 	const focus = () => {
