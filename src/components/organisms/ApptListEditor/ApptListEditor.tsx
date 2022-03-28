@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components'
 
 import { parseGroupsNames } from 'helpers/helpers';
@@ -8,6 +8,8 @@ import { Select } from 'components/atoms';
 import { IBrother } from 'types/brothers';
 import { formatDate } from 'utilities/dates';
 import { BrotherPresentation } from 'components/molecules';
+import { useAppointments } from 'hooks/appointments';
+import { updateAppointment } from 'services/appointments';
 
 interface Props {
 	group: 'A' | 'B'
@@ -16,7 +18,7 @@ interface Props {
 	isEditing: boolean
 }
 
-export type HandleBrothersChange = (brother: IBrother, index: number, date: Date, group: Props['group']) => void
+export type HandleBrothersChange = (broId: string, appointId: string, field: string) => void
 
 export const ApptListEditor: React.FC<Props> = ({
 	group,
@@ -25,40 +27,44 @@ export const ApptListEditor: React.FC<Props> = ({
 	isEditing,
 }) => {
 
-	const handleBrothersChange: HandleBrothersChange = (brother, index, date, group) => {
-		console.log(brother.name, index, date, group)
+	const { appointments, getAppointments, editAppointment, loading } = useAppointments()
+
+	useEffect(() => {
+		getAppointments(month, year, group)
+	}, [])
+
+	const handleBrothersChange: HandleBrothersChange = (broId, appointmentId, field ) => {
+		editAppointment({ appointment: { [field]: broId }, appointmentId, group })
 	}
-
-
-	console.log(dates[group](year, month))
 
 	return (
 		<Div>
 			<h1 className='list_title'>{parseGroupsNames(allGroups[group].groups)}</h1>
 
-			{dates[group](year, month).map((date) => {
-				return (
-					<div key={date.timedate.toUTCString()} className="appointment_section">
-						<p className="date_time_label"> {formatDate(date.timedate)}</p>
-						<p className='warning'>{date.suffix}</p>
-						<BrotherPresentation
-							className='select'
-							group={group}
-							onChange={(props) => handleBrothersChange(props, 0, date.timedate, group)}
-							value={date.bro1}
-							isEditing={isEditing}
-						/>
-						<BrotherPresentation
-							className='select'
-							group={group}
-							onChange={(props) => handleBrothersChange(props, 1, date.timedate, group)}
-							value={date.bro2}
-							isEditing={isEditing}
-						/>
-					</div>
-				)
-			})}
-			
+			{!appointments?.[group] && loading ? <h1>Loading</h1> : (
+				appointments?.[group]?.map((date) => {
+					return (
+						<div key={date.datetime} className="appointment_section">
+							<p className="date_time_label"> {formatDate(new Date(date.datetime))}</p>
+							<p className='warning'>{date.suffix}</p>
+							<BrotherPresentation
+								className='select'
+								group={group}
+								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro1')}
+								value={date.bro1}
+								isEditing={isEditing}
+							/>
+							<BrotherPresentation
+								className='select'
+								group={group}
+								onChange={(bro) => handleBrothersChange(bro._id, date._id, 'bro2')}
+								value={date.bro2}
+								isEditing={isEditing}
+							/>
+						</div>
+					)
+				})
+			)}
 		</Div>
 	)
 }
@@ -74,6 +80,7 @@ const Div = styled.div`
 		p {
 			font-size: 0.8rem;
 			font-weight: 600;
+			line-height: 1.2rem;
 		}
 	}
 

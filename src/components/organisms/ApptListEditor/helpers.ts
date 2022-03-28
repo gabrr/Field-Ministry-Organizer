@@ -2,10 +2,10 @@ import { IBrother } from 'types/brothers';
 import { brothers } from 'mocks/brothers';
 
 const groupsA = ["Trevo", "Rio Tavares", "Santos Dumont"]
-const groupA = brothers.filter(({ fieldGroup }) => groupsA.includes(fieldGroup))
+const groupA = (users: IBrother[]) => users.filter(({ fieldGroup }) => groupsA.includes(fieldGroup))
 
 const groupsB = ["Costeira", "Jorge Lacerda"]
-const groupB = brothers.filter(({ fieldGroup }) => groupsB.includes(fieldGroup))
+const groupB = (users: IBrother[]) => users.filter(({ fieldGroup }) => groupsB.includes(fieldGroup))
 
 export const allGroups = {
 	'A': {
@@ -57,7 +57,7 @@ export const getMonthWeekends = (year: number, month: number) => {
 	//the object that will be out putted inside an array.
 	const emptyBrother: IBrother = {
 		fieldGroup: '',
-		id: '',
+		_id: '',
 		isElder: false,
 		isTalker: true,
 		isVideoSupporter: false,

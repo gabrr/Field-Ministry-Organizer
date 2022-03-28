@@ -3,27 +3,28 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { nextMonths } from './helpers';
-import { getMonthAppointmentObject } from 'services/appointments';
+import { getAppointmentsByMonth, getMonthAppointmentObject } from 'services/appointments';
+import { useUsers } from 'hooks/users';
 
 interface Props {}
 
 export const Home: React.FC<Props> = () => {
 	const navigate = useNavigate()
+	const { getAllUsers } = useUsers()
 
 	const navigateToMonth = (month: number, year: number) => {
 		navigate(`/appointments/${month}/${year}`)
 	}
 	
 	useEffect(() => {
-		getMonthAppointmentObject("2022/01")
-			.then((data) => console.log(data))
+		getAllUsers()
 	}, [])
 
 	return (
 		<Div>
 			{nextMonths(3).map(month => {
 				return (
-					<Button buttonPurpose='borderless' key={month.name} onClick={() => navigateToMonth(month.index, month.year)}>
+					<Button buttonPurpose='borderless' key={month.name} onClick={() => navigateToMonth((month.index + 1), month.year)}>
 						<h1>
 							{month.name}
 						</h1>

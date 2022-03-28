@@ -1,9 +1,18 @@
 import { findGroup } from "helpers/helpers";
 import type { IBrother } from "types/brothers";
 
+export const EMPTY_BROTHER = {
+	_id: '...',
+	name: "",
+	isTalker: true,
+	fieldGroup: "Costeira",
+	isElder: true,
+	isVideoSupporter: true,
+}
+
 export const brothers: IBrother[] = [
 	{
-		id: 'Mario Cesar Melo',
+		_id: 'Mario Cesar Melo',
 		name: "Mario Cesar Melo",
 		isTalker: true,
 		fieldGroup: findGroup("mario"),
@@ -11,7 +20,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false,
 	},
 	{
-		id: 'Patrik França',
+		_id: 'Patrik França',
 		name: "Patrik França",
 		isTalker: true,
 		fieldGroup: findGroup("patrick"),
@@ -19,7 +28,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true,
 	},
 	{
-		id: 'Sadi Frandoloso',
+		_id: 'Sadi Frandoloso',
 		name: "Sadi Frandoloso",
 		isTalker: true,
 		fieldGroup: findGroup('sadi'),
@@ -27,7 +36,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true,
 	},
 	{
-		id: 'José Medeiros',
+		_id: 'José Medeiros',
 		name: "José Medeiros",
 		fieldGroup: findGroup("jose medeiros"),
 		isTalker: true,
@@ -35,7 +44,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false,
 	},
 	{
-		id: 'Milton Melo',
+		_id: 'Milton Melo',
 		name: "Milton Melo",
 		fieldGroup: findGroup("Milton Melo"),
 		isElder: true,
@@ -43,7 +52,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false,
 	},
 	{
-		id: 'Isaac Corrêa',
+		_id: 'Isaac Corrêa',
 		name: "Isaac Corrêa",
 		fieldGroup: findGroup("Isaac Corrêa"),
 		isElder: true,
@@ -51,7 +60,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true,
 	},
 	{
-		id: 'Paulo Costa',
+		_id: 'Paulo Costa',
 		name: "Paulo Costa",
 		fieldGroup: findGroup('Paulo Costa'),
 		isElder: false,
@@ -59,7 +68,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false
 	},
 	{
-		id: 'Diorge',
+		_id: 'Diorge',
 		name: "Diorge",
 		fieldGroup: findGroup('Diorge'),
 		isElder: false,
@@ -67,7 +76,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false,
 	},
 	{
-		id: 'Richard',
+		_id: 'Richard',
 		name: "Richard",
 		fieldGroup: findGroup('richard'),
 		isElder: true,
@@ -75,7 +84,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true
 	},
 	{
-		id: 'Vitor Malagoli',
+		_id: 'Vitor Malagoli',
 		name: "Vitor Malagoli",
 		fieldGroup: findGroup("vitor"),
 		isElder: false,
@@ -83,7 +92,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true
 	},
 	{
-		id: 'Marcelo Frandoloso',
+		_id: 'Marcelo Frandoloso',
 		name: "Marcelo Frandoloso",
 		fieldGroup: findGroup('marcelo'),
 		isElder: true,
@@ -91,7 +100,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true,
 	},
 	{
-		id: 'Julio Raimundo',
+		_id: 'Julio Raimundo',
 		name: "Julio Raimundo",
 		fieldGroup: findGroup("julio"),
 		isElder: true,
@@ -99,7 +108,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: false,
 	},
 	{
-		id: 'Gabriel Oliveira',
+		_id: 'Gabriel Oliveira',
 		name: "Gabriel Oliveira",
 		fieldGroup: findGroup("Gabriel Oliveira"),
 		isElder: false,
@@ -107,7 +116,7 @@ export const brothers: IBrother[] = [
 		isVideoSupporter: true
 	},
 	{
-		id: 'Alexandre Malagoli',
+		_id: 'Alexandre Malagoli',
 		name: "Alexandre Malagoli",
 		fieldGroup: findGroup("alexandre malagoli"),
 		isElder: true,

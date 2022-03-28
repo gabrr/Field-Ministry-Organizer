@@ -1,5 +1,5 @@
 export interface IBrother {
-	id: string
+	_id: string
 	name: string,
 	isTalker: boolean,
 	fieldGroup: string,

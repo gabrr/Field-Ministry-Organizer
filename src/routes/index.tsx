@@ -1,4 +1,5 @@
 import { Home, AppointmentsList } from "pages";
+import { ProvidersCombined } from "providers";
 import { Routes, Route } from "react-router-dom";
 
 const routes = [
@@ -10,10 +11,12 @@ const routes = [
 export const AppRoutes: React.FC = () => {
 
 	return (
-		<Routes>
-			{routes.map(({ Page, title, ...rest }) => {
-				return <Route key={title} {...rest} element={<Page />} />
-			})}
-		</Routes>
+		<ProvidersCombined>
+			<Routes>
+					{routes.map(({ Page, title, ...rest }) => {
+						return <Route key={title} {...rest} element={<Page />} />
+					})}
+			</Routes>
+		</ProvidersCombined>
 	)
 }

@@ -6,9 +6,7 @@ import { Button } from 'components/atoms';
 import { ApptListEditor } from 'components/organisms';
 import { getMonthName } from 'helpers/helpers';
 
-interface Props {}
-
-export const AppointmentsList: React.FC<Props> = () => {
+export const AppointmentsList: React.FC = () => {
 	const { month, year } = useParams()
 	const navigate = useNavigate()
 
@@ -30,7 +28,7 @@ export const AppointmentsList: React.FC<Props> = () => {
 				}
 			</header>
 
-			<h1 className='page_title'>{getMonthName(Number(month))}</h1>
+			<h1 className='page_title'>{getMonthName(Number(month) - 1)}</h1>
 
 			<div className="minstry_lists">
 				<ApptListEditor

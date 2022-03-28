@@ -1,5 +1,14 @@
 import type { IBrother } from 'types/brothers';
 
+export interface IAppointmentParsed {
+	bro1: IBrother;
+	bro2: IBrother;
+	_id: string;
+	dateGroup: string;
+	datetime: string;
+	suffix: string;
+}
+
 export interface IAppointmentResponse {
 	"_id": string
 	"dateGroup": string

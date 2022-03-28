@@ -1,4 +1,5 @@
 import { allGroups } from 'components/organisms/ApptListEditor/helpers';
+import { useUsers } from 'hooks/users';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components'
 import { IBrother } from 'types/brothers';
@@ -12,15 +13,12 @@ interface Props {
 
 export const Select: React.FC<Props> = ({ onChange, className, group, value }) => {
 	const list = useRef<HTMLDivElement>(null)
-	const brothers = allGroups[group].brothers
-	const index = allGroups[group].brothers.findIndex(({ name }) => name === value?.name)
+	const { users, loading } = useUsers()
 
-	const [brotherId, setbrotherId] = useState(index)
 	const [isListOpen, setisListOpen] = useState(false)
 	
 	const handleListOption = (index: number) => {
-		setbrotherId(index)
-		onChange(brothers[index])
+		onChange(allGroups[group].brothers(users)[index])
 	}
 	
 	const focus = () => {
@@ -30,28 +28,31 @@ export const Select: React.FC<Props> = ({ onChange, className, group, value }) =
 
 	const closeList = () => setisListOpen(false)
 
+	if (loading) return <p>Loading</p>
+
 	return (
 		<Div className={className}>
 			<div className="select_list">
-				<div onClick={focus} onBlur={closeList} className="value_holder">{brothers[brotherId]?.name || ''}</div>
-				<div
-					ref={list}
-					tabIndex={0}
-					onBlur={closeList}
-					className={`options_container ${isListOpen ? 'open' : 'close'}`}
-				>
-					{brothers.map((brother, index) => {
-						return (
-							<div
-								key={index}
-								className="brother_list_item"
-								onClick={() => handleListOption(index)}
-							>
-								{brother.name}
-							</div>
-						)
-					})}
-				</div>
+				{loading ? <h1>Loading</h1> : <>
+					<div onClick={focus} onBlur={closeList} className="value_holder">{value?.name}</div>
+					<div
+						ref={list}
+						tabIndex={0}
+						onBlur={closeList}
+						className={`options_container ${isListOpen ? 'open' : 'close'}`}
+					>
+						{allGroups[group].brothers(users).map((brother, index) => {
+							return (
+								<div
+									key={index}
+									className="brother_list_item"
+									onClick={() => handleListOption(index)}
+								>
+									{brother.name}
+								</div>
+							)
+						})}
+					</div></>}
 			</div>
 			
 		</Div>
