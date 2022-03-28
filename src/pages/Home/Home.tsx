@@ -22,7 +22,7 @@ export const Home: React.FC<Props> = () => {
 
 	return (
 		<Div>
-			{nextMonths(3).map(month => {
+			{nextMonths(5).map(month => {
 				return (
 					<Button buttonPurpose='borderless' key={month.name} onClick={() => navigateToMonth((month.index + 1), month.year)}>
 						<h1>
