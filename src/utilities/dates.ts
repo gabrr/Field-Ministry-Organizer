@@ -3,5 +3,5 @@ export const formatDate = (date: Date) => {
 		month: 'numeric',
 		day: 'numeric',
 		weekday: 'long',
-	}) + ' às 9:00'
+	}) + ' às 9:30'
 }

@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import { parseGroupsNames } from 'helpers/helpers';
 
-import { allGroups, dates } from 'components/organisms/ApptListEditor/helpers';
-import { Select, SuffixInput } from 'components/atoms';
-import { IBrother } from 'types/brothers';
-import { formatDate } from 'utilities/dates';
+import { SuffixInput } from 'components/atoms';
 import { BrotherPresentation } from 'components/molecules';
+import { allGroups } from 'components/organisms/ApptListEditor/helpers';
 import { useAppointments } from 'hooks/appointments';
-import { updateAppointment } from 'services/appointments';
+import { formatDate } from 'utilities/dates';
 
 interface Props {
 	group: 'A' | 'B'
