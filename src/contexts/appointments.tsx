@@ -1,5 +1,4 @@
-import { isEmpty } from 'lodash'
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { getAppointmentsByMonth, updateAppointment, UpdateAppointmentProps } from "services/appointments";
 import { getAllBrother } from "services/users";
 import { IAppointmentParsed } from "types/appointments";

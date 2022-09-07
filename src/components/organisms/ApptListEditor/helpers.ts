@@ -1,6 +1,7 @@
 import { IBrother } from 'types/brothers';
 import { brothers } from 'mocks/brothers';
 
+const groupsA2 = ["Trevo", "Rio Tavares"]
 const groupsA = ["Trevo", "Rio Tavares", "Santos Dumont"]
 const groupA = (users: IBrother[]) => users.filter(({ fieldGroup }) => groupsA.includes(fieldGroup))
 
@@ -9,7 +10,7 @@ const groupB = (users: IBrother[]) => users.filter(({ fieldGroup }) => groupsB.i
 
 export const allGroups = {
 	'A': {
-		groups: groupsA,
+		groups: groupsA2,
 		brothers: groupA
 	},
 	'B': {
